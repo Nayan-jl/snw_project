@@ -181,6 +181,204 @@
             </div>
         </div>
     </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">GPA Calculator</div>
+                    <p>A simple, accurate tool for students to calculate their GPA instantly. No signup required, completely free.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#calculator">Calculator</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Subjects</h4>
+                    <ul>
+                        <li><a href="#calculator">PSP</a></li>
+                        <li><a href="#calculator">SNW</a></li>
+                        <li><a href="#calculator">Mathematics</a></li>
+                        <li><a href="#calculator">Physics</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 GPA Calculator. All rights reserved. Designed for students.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.querySelector('.navbar');
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const calculateBtn = document.getElementById('calculate-btn');
+        const resultContainer = document.getElementById('result-container');
+        const gpaValue = document.getElementById('gpa-value');
+        const resultMessage = document.getElementById('result-message');
+        const contactSubmit = document.getElementById('contact-submit');
+        const formSuccess = document.getElementById('form-success');
+
+        const pspSlider = document.getElementById('psp-slider');
+        const pspInput = document.getElementById('psp-input');
+        const snwSlider = document.getElementById('snw-slider');
+        const snwInput = document.getElementById('snw-input');
+        const mathSlider = document.getElementById('math-slider');
+        const mathInput = document.getElementById('math-input');
+        const physicsSlider = document.getElementById('physics-slider');
+        const physicsInput = document.getElementById('physics-input');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        });
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        function calculateGradePoints(marks) {
+            if (marks >= 90) return 10;
+            if (marks >= 80) return 9;
+            if (marks >= 70) return 8;
+            if (marks >= 60) return 7;
+            if (marks >= 50) return 6;
+            if (marks >= 40) return 5;
+            return 0;
+        }
+        
+        function calculateGPA() {
+            const pspMarks = parseInt(pspInput.value) || 0;
+            const snwMarks = parseInt(snwInput.value) || 0;
+            const mathMarks = parseInt(mathInput.value) || 0;
+            const physicsMarks = parseInt(physicsInput.value) || 0;
+            
+            if (pspMarks > 100 || snwMarks > 100 || mathMarks > 100 || physicsMarks > 100) {
+                alert('Please enter marks between 0 and 100');
+                return;
+            }
+            
+            const pspGP = calculateGradePoints(pspMarks);
+            const snwGP = calculateGradePoints(snwMarks);
+            const mathGP = calculateGradePoints(mathMarks);
+            const physicsGP = calculateGradePoints(physicsMarks);
+            
+    
+            const gpa = (pspGP + snwGP + mathGP + physicsGP) / 4;
+            
+            gpaValue.textContent = gpa.toFixed(2);
+            
+            if (gpa >= 9) {
+                gpaValue.className = 'result-value result-excellent';
+                resultMessage.textContent = 'Excellent! Keep up the great work!';
+            } else if (gpa >= 7) {
+                gpaValue.className = 'result-value result-good';
+                resultMessage.textContent = 'Good job! You\'re doing well!';
+            } else {
+                gpaValue.className = 'result-value result-poor';
+                resultMessage.textContent = 'Keep working hard! You can improve!';
+            }
+            
+
+            resultContainer.classList.add('show');
+            
+
+            resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+
+        function connectSliderAndInput(slider, input) {
+            slider.addEventListener('input', () => {
+                input.value = slider.value;
+            });
+            
+            input.addEventListener('input', () => {
+                let value = parseInt(input.value) || 0;
+                
+                if (value < 0) value = 0;
+                if (value > 100) value = 100;
+                
+                input.value = value;
+                slider.value = value;
+            });
+        }
+        
+        connectSliderAndInput(pspSlider, pspInput);
+        connectSliderAndInput(snwSlider, snwInput);
+        connectSliderAndInput(mathSlider, mathInput);
+        connectSliderAndInput(physicsSlider, physicsInput);
+        
+        calculateBtn.addEventListener('click', calculateGPA);
+        
+        contactSubmit.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            formSuccess.classList.add('show');
+            
+            document.getElementById('name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('message').value = '';
+            
+            setTimeout(() => {
+                formSuccess.classList.remove('show');
+            }, 5000);
+        });
+        
+
+        document.addEventListener('DOMContentLoaded', () => {
+            window.dispatchEvent(new Event('scroll'));
+            
+            document.querySelectorAll('.feature-card').forEach((card, index) => {
+                card.style.transitionDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
     
 </body>
 </html>
