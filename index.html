@@ -45,7 +45,7 @@
         </div>
     </section>
 
-     <section id="features" class="features">
+    <section id="features" class="features">
         <div class="container">
             <h2>Why Use Our GPA Calculator</h2>
             <p class="section-subtitle">Designed specifically for students, our GPA calculator provides accurate results with a clean, intuitive interface.</p>
@@ -77,6 +77,59 @@
                     </div>
                     <h3>Made for Students</h3>
                     <p>Designed with students in mind, focusing on the subjects that matter most to you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="calculator">
+        <div class="container">
+            <h2>Calculate Your GPA</h2>
+            <p class="section-subtitle">Enter your marks for each subject below. Use the sliders or type directly in the input fields.</p>
+            
+            <div class="calculator-container fade-in">
+                <div class="input-group">
+                    <div class="input-row">
+                        <div class="subject-label">PSP (out of 100)</div>
+                        <div class="input-controls">
+                            <input type="range" min="0" max="100" value="0" class="slider" id="psp-slider">
+                            <input type="number" min="0" max="100" value="0" class="number-input" id="psp-input">
+                        </div>
+                    </div>
+                    
+                    <div class="input-row">
+                        <div class="subject-label">SNW (out of 100)</div>
+                        <div class="input-controls">
+                            <input type="range" min="0" max="100" value="0" class="slider" id="snw-slider">
+                            <input type="number" min="0" max="100" value="0" class="number-input" id="snw-input">
+                        </div>
+                    </div>
+                    
+                    <div class="input-row">
+                        <div class="subject-label">Mathematics (out of 100)</div>
+                        <div class="input-controls">
+                            <input type="range" min="0" max="100" value="0" class="slider" id="math-slider">
+                            <input type="number" min="0" max="100" value="0" class="number-input" id="math-input">
+                        </div>
+                    </div>
+                    
+                    <div class="input-row">
+                        <div class="subject-label">Physics (out of 100)</div>
+                        <div class="input-controls">
+                            <input type="range" min="0" max="100" value="0" class="slider" id="physics-slider">
+                            <input type="number" min="0" max="100" value="0" class="number-input" id="physics-input">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="calculate-btn-container">
+                    <button class="btn btn-accent" id="calculate-btn">Calculate GPA</button>
+                </div>
+                
+                <div class="result-container" id="result-container">
+                    <div class="result-label">Your GPA:</div>
+                    <div class="result-value" id="gpa-value">0.00</div>
+                    <p id="result-message">Based on your input marks</p>
                 </div>
             </div>
         </div>

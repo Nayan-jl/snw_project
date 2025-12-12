@@ -304,3 +304,121 @@ ul {
     font-size: 28px;
     color: var(--primary);
 }
+
+.calculator-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+.input-group {
+    margin-bottom: 30px;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.subject-label {
+    width: 150px;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.input-controls {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.number-input {
+    width: 100px;
+    padding: 12px 15px;
+    border: 2px solid #E2E8F0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.number-input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(45, 91, 255, 0.1);
+}
+
+.slider {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 8px;
+    border-radius: 4px;
+    background: #E2E8F0;
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--primary);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+.calculate-btn-container {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.result-container {
+    text-align: center;
+    margin-top: 40px;
+    padding: 40px;
+    border-radius: 16px;
+    background-color: var(--background);
+    display: none;
+}
+
+.result-container.show {
+    display: block;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.result-label {
+    font-size: 1.2rem;
+    color: #718096;
+    margin-bottom: 10px;
+}
+
+.result-value {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.result-excellent {
+    color: var(--accent);
+}
+
+.result-good {
+    color: var(--neutral);
+}
+
+.result-poor {
+    color: var(--warning);
+}
